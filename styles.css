@@ -455,3 +455,58 @@ footer {
 }
 
 
+/* BOTÓN WHATSAPP - DEMOSTRACIÓN */
+
+.whatsapp-demo {
+    width: 100%;
+    margin-top: 15px;
+    padding: 14px;
+    background: #16834a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.whatsapp-demo:hover {
+    background: #116c3c;
+}
+
+/* VENTANA EMERGENTE */
+
+.whatsapp-dialog {
+    width: min(90%, 450px);
+    padding: 25px;
+    border: 1px solid #a88b53;
+    border-radius: 12px;
+    background: #201e19;
+    color: white;
+}
+
+.whatsapp-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.whatsapp-dialog h2 {
+    font-size: 26px;
+    color: #e9d1a0;
+}
+
+.whatsapp-message {
+    padding: 15px;
+    background: #173f2b;
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+#cerrar-whatsapp {
+    padding: 12px 20px;
+    background: #d9b46d;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+

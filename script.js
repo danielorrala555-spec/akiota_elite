@@ -90,7 +90,18 @@ grid.innerHTML = cachorros.map(c => `
     }
 </div>
 
-        <p>Consulta por WhatsApp: enlace pendiente de configurar.</p>
+        
+<p><strong>Código:</strong> AK-${String(c.id).padStart(3, '0')}</p>
+
+${c.disponible ? `
+  <button
+    type="button"
+    class="whatsapp-demo"
+    data-puppy-id="${c.id}">
+    ☎ Consultar por WhatsApp
+  </button>
+` : ''}
+
       </div>
     </div>
   </article>`).join('');
@@ -202,5 +213,32 @@ botones.forEach(boton => {
 
         animarDetalles(boton, abrir);
     });
+});
+
+const ventanaWhatsApp = document.querySelector('#whatsapp-preview');
+const mensajeWhatsApp = document.querySelector('#whatsapp-message');
+
+grid.addEventListener('click', (evento) => {
+    const boton = evento.target.closest('.whatsapp-demo');
+    if (!boton) return;
+
+    const cachorro = cachorros.find(
+        c => String(c.id) === boton.dataset.puppyId
+    );
+
+    if (!cachorro || !cachorro.disponible) return;
+
+    const codigo = `AK-${String(cachorro.id).padStart(3, '0')}`;
+
+    mensajeWhatsApp.textContent =
+        `Hola, estoy interesado en el cachorro ${cachorro.nombre}, ` +
+        `código ${codigo}, de raza Akita americano. ` +
+        `Me gustaría conocer su precio y obtener más información.`;
+
+    ventanaWhatsApp.showModal();
+});
+
+document.querySelector('#cerrar-whatsapp').addEventListener('click', () => {
+    ventanaWhatsApp.close();
 });
 
