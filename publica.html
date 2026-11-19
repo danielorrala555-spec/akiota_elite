@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Akita Elite | Criadero</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#inicio">AKITA <span>ELITE</span>
+
+  </a><nav aria-label="Navegación principal">
+    <a href="#cachorros">Cachorros</a>
+    <a href="#padres">Padres</a>
+    <a href="#contacto">Contacto</a>
+    <a href="#raza">La raza Akita</a>
+
+  </nav>
+</header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <p class="eyebrow">CRIADERO · AKITA AMERICANO</p>
+      <h1>Elegancia, lealtad<br><em>y carácter</em>
+      </h1>
+      <p>Conoce nuestros ejemplares y descubre al próximo integrante de tu familia.</p>
+      <a class="btn" href="#cachorros">Conocer cachorros</a>
+    </section>
+
+<section class="benefits">
+  <div class="benefit">
+    <i data-lucide="award"></i>
+    <h3>Línea de sangre seleccionada</h3>
+  </div>
+
+  <div class="benefit">
+    <i data-lucide="shield-check"></i>
+    <h3>Salud y vacunas al día</h3>
+  </div>
+
+  <div class="benefit">
+    <i data-lucide="heart-handshake"></i>
+    <h3>Criadero responsable</h3>
+  </div>
+
+  <div class="benefit">
+    <i data-lucide="messages-square"></i>
+    <h3>Asesoría y acompañamiento</h3>
+  </div>
+</section>
+
+    <section class="section" id="cachorros">
+      <p class="eyebrow">NUESTROS EJEMPLARES</p>
+      <h2>Cachorros disponibles</h2>
+      <p class="intro">Selecciona «Ver más» para consultar los detalles sin salir de esta página.</p>
+      <div class="puppy-grid" id="puppy-grid"></div>
+    </section>
+
+
+    <section class="section section-alt" id="padres">
+      <p class="eyebrow">NUESTROS REPRODUCTORES</p>
+      <h2>Conoce a los padres</h2>
+      <div class="parent-grid" id="parent-grid"></div>
+    </section>
+    <section class="section" id="contacto">
+      <p class="eyebrow">CONTACTO</p>
+      <h2>¿Te interesa un cachorro?</h2>
+      <p class="intro">Consulta disponibilidad y detalles directamente con el criadero.</p>
+      <p class="notice">El número de WhatsApp se configurará cuando el cliente lo proporcione.</p>
+    </section>
+    <section class="akita-info" id="raza">
+  <h2>La raza Akita</h2>
+  <p class="akita-subtitle">
+    Conoce al imponente Akita Americano
+  </p>
+
+  <div class="akita-content">
+    <div class="akita-image">
+      <img src="IMG/akita-raza.jpg"
+           alt="Akita Americano adulto">
+    </div>
+
+    <div class="akita-description">
+      <h3>Akita Americano</h3>
+
+      <p>
+        El Akita Americano es una raza de gran
+        tamaño, reconocida por su fuerza,
+        elegancia y personalidad leal.
+        Sus raíces se encuentran en Japón,
+        aunque su desarrollo como raza
+        diferenciada tuvo lugar en
+        Estados Unidos.
+      </p>
+
+      <p>
+        Es un perro inteligente, independiente
+        y protector, que puede desarrollar
+        un fuerte vínculo con su familia.
+        Requiere educación constante,
+        socialización temprana y
+        propietarios comprometidos.
+      </p>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+<dialog id="whatsapp-preview" class="whatsapp-dialog">
+    <h2>Mensaje de ejemplo</h2>
+
+    <p>Así se verá el mensaje preparado para WhatsApp:</p>
+
+    <p id="whatsapp-message" class="whatsapp-message"></p>
+
+    <p>Esta es una demostración. No se enviará ningún mensaje.</p>
+
+    <button type="button" id="cerrar-whatsapp">
+        Cerrar
+    </button>
+</dialog>
+
+
+  <footer>© 2026 Akita Elite · Prototipo con información ficticia</footer>
+
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+<!-- Librería de Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Conexión con nuestro proyecto -->
+<script src="supabaseClient.js"></script>
+<script src="public.js" defer></script>
+<script>
+  lucide.createIcons();
+</script>
+
+</body>
+</html>

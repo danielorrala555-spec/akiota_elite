@@ -5,16 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Akita Elite | Criadero</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
 </head>
 <body>
   <header class="header">
     <a class="brand" href="#inicio">AKITA <span>ELITE</span>
+
   </a><nav aria-label="Navegación principal">
     <a href="#cachorros">Cachorros</a>
     <a href="#padres">Padres</a>
     <a href="#contacto">Contacto</a>
     <a href="#raza">La raza Akita</a>
+
+<button type="button" class="admin-btn">
+    <i data-lucide="lock" aria-hidden="true"></i>
+    Admin
+  </button>
   </nav>
 </header>
 
@@ -121,9 +126,118 @@
     </button>
 </dialog>
 
+
+<dialog id="admin-login" class="admin-dialog">
+    <h2>Acceso de administrador</h2>
+    <p>Ingresa tus credenciales para continuar.</p>
+
+    <form id="admin-form">
+        <label for="admin-email">Correo electrónico</label>
+        <input
+            type="email"
+            id="admin-email"
+            name="email"
+            required
+            autocomplete="username"
+        >
+
+        <label for="admin-password">Contraseña</label>
+        <input
+            type="password"
+            id="admin-password"
+            name="password"
+            required
+            autocomplete="current-password"
+        >
+
+        <p id="admin-error" role="alert"></p>
+
+        <button type="submit">Iniciar sesión</button>
+        <button type="button" id="cerrar-admin">
+            Cancelar
+        </button>
+    </form>
+</dialog>
+
+
+<!-- Menú lateral del administrador -->
+<section id="admin-panel" class="admin-panel" hidden>
+  <aside class="admin-sidebar">
+
+    <div class="admin-logo">
+        AKITA <span>ELITE</span>
+    </div>
+
+    <nav class="admin-menu">
+
+        <button type="button" class="admin-menu-item" data-section="portada">
+            <span class="icono">
+                <i data-lucide="image"></i>
+            </span>
+            <span class="nombre">Portada</span>
+            <i data-lucide="plus" class="admin-plus"></i>
+        </button>
+
+        <button type="button" class="admin-menu-item" data-section="padres">
+            <span class="icono">
+                <i data-lucide="users"></i>
+            </span>
+            <span class="nombre">Padres</span>
+            <i data-lucide="plus" class="admin-plus"></i>
+        </button>
+
+        <button type="button" class="admin-menu-item" data-section="cachorros">
+            <span class="icono">
+                <i data-lucide="paw-print"></i>
+            </span>
+            <span class="nombre">Cachorros</span>
+            <i data-lucide="plus" class="admin-plus"></i>
+        </button>
+
+        <button type="button" class="admin-menu-item" data-section="camadas">
+            <span class="icono">
+                <i data-lucide="layers"></i>
+            </span>
+            <span class="nombre">Camadas</span>
+            <i data-lucide="plus" class="admin-plus"></i>
+        </button>
+
+    </nav>
+
+    <button type="button" class="admin-logout">
+        <i data-lucide="log-out"></i>
+        <span>Cerrar sesión</span>
+    </button>
+
+  
+  </aside>
+
+  <main class="admin-content">
+    <!-- Aquí mostraremos la página Akita Elite -->
+     <div id="admin-hint"></div>
+     <iframe
+        src="publica.html"
+        class="admin-preview"
+        title="Vista previa de Akita Elite">
+    </iframe>
+  </main>
+
+</section>
+
+
+
   <footer>© 2026 Akita Elite · Prototipo con información ficticia</footer>
 
 <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+<!-- Librería de Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Conexión con nuestro proyecto -->
+<script src="supabaseClient.js"></script>
+
+<script src="public.js" defer></script>
+
+<script src="script.js" defer></script>
 <script>
   lucide.createIcons();
 </script>
