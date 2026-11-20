@@ -26,9 +26,12 @@
   <main>
     <section class="hero" id="inicio">
       <p class="eyebrow">CRIADERO · AKITA AMERICANO</p>
-      <h1>Elegancia, lealtad<br><em>y carácter</em>
-      </h1>
-      <p>Conoce nuestros ejemplares y descubre al próximo integrante de tu familia.</p>
+     
+<h1 id="hero-titulo">Elegancia, lealtad y carácter</h1>
+<p id="hero-subtitulo">
+  Conoce nuestros ejemplares y descubre al próximo integrante de tu familia.
+</p>
+
       <a class="btn" href="#cachorros">Conocer cachorros</a>
     </section>
 
@@ -212,15 +215,59 @@
   
   </aside>
 
-  <main class="admin-content">
-    <!-- Aquí mostraremos la página Akita Elite -->
-     <div id="admin-hint"></div>
-     <iframe
+ 
+<main class="admin-content">
+
+    <div id="admin-hint"></div>
+
+    <!-- FORMULARIO PARA EDITAR PORTADA -->
+    <section id="portada-panel" hidden>
+
+        <h3>Editar portada</h3>
+
+        <label for="titulo-portada">Título</label>
+        <input
+            type="text"
+            id="titulo-portada"
+            placeholder="Título de la portada"
+        >
+
+        <label for="subtitulo-portada">Subtítulo</label>
+        <textarea
+            id="subtitulo-portada"
+            placeholder="Descripción de la portada"
+        ></textarea>
+
+        <label for="imagen-portada">Imagen de portada</label>
+        <input
+            type="file"
+            id="imagen-portada"
+            accept="image/*"
+        >
+
+        <img
+            id="vista-imagen-portada"
+            alt="Vista previa de portada"
+            style="max-width: 300px; display: none;"
+        >
+
+        <button type="button" id="guardar-portada">
+            Guardar cambios
+        </button>
+
+        <p id="mensaje-portada"></p>
+
+    </section>
+
+    <!-- VISTA PREVIA DE LA PÁGINA -->
+    <iframe
         src="publica.html"
         class="admin-preview"
         title="Vista previa de Akita Elite">
     </iframe>
-  </main>
+
+</main>
+
 
 </section>
 

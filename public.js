@@ -241,3 +241,43 @@ grid.addEventListener('click', (evento) => {
 document.querySelector('#cerrar-whatsapp').addEventListener('click', () => {
     ventanaWhatsApp.close();
 });
+
+// -------------- Cargar la portada desde Supabase y actualizar el contenido de la página -------------//
+
+async function cargarPortada() {
+    const { data, error } = await supabaseClient
+        .from("portada")
+        .select("titulo, subtitulo, imagen_url")
+        .eq("id", 1)
+        .single();
+
+    if (error) {
+        console.error("Error al cargar la portada:", error);
+        return;
+    }
+
+    const titulo = document.getElementById("hero-titulo");
+    const subtitulo = document.getElementById("hero-subtitulo");
+    const hero = document.querySelector(".hero");
+
+    if (titulo && data.titulo !== null) {
+        titulo.textContent = data.titulo;
+    }
+
+    if (subtitulo && data.subtitulo !== null) {
+        subtitulo.textContent = data.subtitulo;
+    }
+
+    if (hero && data.imagen_url) {
+        hero.style.backgroundImage = `
+            linear-gradient(
+                90deg,
+                rgba(0, 0, 0, 0.153),
+                rgba(0, 0, 0, 0.25)
+            ),
+            url("${encodeURI(data.imagen_url).replace(/"/g, "%22")}")
+        `;
+    }
+}
+
+cargarPortada();
