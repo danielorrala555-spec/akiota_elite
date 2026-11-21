@@ -794,3 +794,317 @@ footer {
 
 
 
+
+/* Contacto público por WhatsApp */
+.whatsapp-contacto:not([hidden]) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    background: #7fd96d;
+    color: #18140d;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.whatsapp-contacto:hover {
+    background: #95f083;
+    transform: translateY(-2px);
+}
+.whatsapp-contacto:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+.contacto-numero {
+    margin-top: 14px;
+    color: #6ae887;
+    font-size: 16px;
+}
+
+.telefono-ecuador {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.telefono-ecuador span {
+    padding: 12px;
+    background: #252117;
+    color: #d9b46d;
+    border: 1px solid #a88b53;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.telefono-ecuador input {
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* Akita Elite: rediseño exclusivo del editor de Padres */
+.admin-content { background: #000000; color: #f2e9d7; padding: 28px; }
+#padres-panel[hidden], #portada-panel[hidden], #contacto-panel[hidden] { display: none !important; }
+.padres-editor { max-width: 1100px; margin: 0 auto 28px; padding: 30px; background: #000000; border: 1px solid #51432b; border-radius: 18px; box-shadow: 0 16px 38px #0005; }
+.padres-editor-header { border-bottom: 1px solid #51432b; margin-bottom: 26px; padding-bottom: 18px; }
+.padres-editor-header h3 { font-size: 28px; color: #f5e9d3; margin: 8px 0; }
+.padres-editor-header p { color: #bcb09c; margin: 0; }
+.padres-editor-header .admin-kicker { color: #d9b46d; font-size: 11px; letter-spacing: 2px; font-weight: 700; }
+.padres-editor-grid { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,1fr); gap: 34px; }
+.padres-editor-photo, .padres-editor-fields { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.padres-editor label { color: #e5d2aa; font-size: 14px; font-weight: 600; margin-top: 6px; }
+.padres-editor input, .padres-editor select, .padres-editor textarea { width: 100%; min-width: 0; background: #141310; border: 1px solid #65563e; border-radius: 9px; padding: 13px 14px; color: #f5eee2; font: inherit; }
+.padres-editor input:focus, .padres-editor select:focus, .padres-editor textarea:focus { outline: 2px solid #d9b46d; outline-offset: 1px; }
+.padres-editor input[type=file] { font-size: 13px; }
+.padres-photo-frame { height: 280px; display: grid; place-items: center; border: 1px dashed #86704c; background: #151410; border-radius: 12px; overflow: hidden; }
+.padres-photo-frame img { width: 100%; height: 100%; max-width: none !important; object-fit: contain; }
+.padres-photo-empty { text-align: center; color: #9e927e; padding: 22px; }
+.padres-photo-frame:has(img[src]) .padres-photo-empty { display: none; }
+.padres-editor textarea { min-height: 126px; resize: vertical; }
+.padres-editor-actions { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 26px; padding-top: 20px; border-top: 1px solid #51432b; }
+#mensaje-padre { color: #e5d2aa; }
+#guardar-padre { background: #d9b46d; color: #17130c; border: 0; border-radius: 9px; padding: 14px 24px; font-weight: 700; cursor: pointer; }
+#guardar-padre:hover { background: #efcb85; }
+#guardar-padre:disabled { opacity: .6; cursor: wait; }
+@media (max-width: 800px) { .admin-content { padding: 14px; } .padres-editor { padding: 18px; } .padres-editor-grid { grid-template-columns: 1fr; } .padres-editor-actions { flex-direction: column; align-items: stretch; } .admin-sidebar { width: 190px; } }
+
+
+.admin-menu-item.activo {
+    background: #3b3020;
+    color: #f0c878;
+    border-left: 3px solid #d9b46d;
+    font-weight: 700;
+}
+
+.admin-menu-item.activo .icono svg {
+    width: 27px;
+    height: 27px;
+    color: #f0c878;
+}
+
+/* Editor de Portada - Akita Elite */
+
+.portada-editor {
+    max-width: 1100px;
+    margin: 0 auto 28px;
+    padding: 30px;
+    background: #211f1b;
+    border: 1px solid #51432b;
+    border-radius: 18px;
+    box-shadow: 0 16px 38px #0005;
+}
+
+.portada-editor-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 34px;
+}
+
+.portada-editor-photo,
+.portada-editor-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+.portada-editor label {
+    color: #e5d2aa;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.portada-editor input,
+.portada-editor textarea {
+    width: 100%;
+    min-width: 0;
+    background: #141310;
+    border: 1px solid #65563e;
+    border-radius: 9px;
+    padding: 13px 14px;
+    color: #f5eee2;
+    font: inherit;
+}
+
+.portada-editor textarea {
+    min-height: 160px;
+    resize: vertical;
+}
+
+.portada-photo-frame {
+    height: 280px;
+    display: grid;
+    place-items: center;
+    background: #151410;
+    border: 1px dashed #86704c;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#vista-imagen-portada {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
+}
+
+.portada-editor-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px solid #51432b;
+}
+
+#mensaje-portada {
+    color: #e5d2aa;
+}
+
+#guardar-portada {
+    background: #d9b46d;
+    color: #17130c;
+    border: 0;
+    border-radius: 9px;
+    padding: 14px 24px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#guardar-portada:hover {
+    background: #efcb85;
+}
+
+#guardar-portada:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+@media (max-width: 800px) {
+    .portada-editor {
+        padding: 18px;
+    }
+
+    .portada-editor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portada-editor-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* PANEL DE ADMINISTRACIÓN - PORTADA */
+
+#portada-panel {
+    max-width: 1100px;
+    margin: 0 auto 28px;
+    padding: 30px;
+    background: #030303;
+    color: #f5e9d3;
+    border: 1px solid #51432b;
+    border-radius: 18px;
+}
+
+#portada-panel[hidden] {
+    display: none !important;
+}
+
+#portada-panel h3 {
+    font-size: 28px;
+    margin: 0 0 26px;
+    color: #e5d2aa;
+}
+
+.portada-editor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 34px;
+}
+
+.portada-editor-texto,
+.portada-editor-imagen {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+}
+
+#portada-panel label {
+    color: #e5d2aa;
+    font-weight: 600;
+}
+
+#portada-panel input,
+#portada-panel textarea {
+    width: 100%;
+    padding: 13px;
+    background: #141310;
+    color: #f5eee2;
+    border: 1px solid #65563e;
+    border-radius: 9px;
+    font: inherit;
+}
+
+#portada-panel textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.portada-imagen-marco {
+    min-height: 280px;
+    border: 1px dashed #86704c;
+    border-radius: 12px;
+    background: #151410;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+#vista-imagen-portada {
+    width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+}
+
+#guardar-portada {
+    align-self: flex-start;
+    background: #d9b46d;
+    color: #000000;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 9px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#guardar-portada:hover {
+    background: #efcb85;
+}
+
+@media (max-width: 800px) {
+    .portada-editor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #portada-panel {
+        padding: 18px;
+    }
+}
+
+/* Botón seleccionado del menú administrador */
+
+.admin-menu-item.activo {
+    background: #3b3020;
+    color: #d9b46d;
+    border-left: 3px solid #d9b46d;
+}
+
+.admin-menu-item.activo .icono,
+.admin-menu-item.activo .admin-plus {
+    color: #d9b46d;
+}

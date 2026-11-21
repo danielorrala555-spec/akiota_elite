@@ -1,0 +1,844 @@
+:root {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #cdc4ab;
+    background: #11110f;
+    scroll-behavior: smooth
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px max(5vw, 20px);
+    border-bottom: 1px solid #3c3425;
+    background: #000000
+}
+
+.brand {
+    font-size: 22px;
+    letter-spacing: 3px;
+    font-weight: 800
+}
+
+.brand span,
+.eyebrow,
+em {
+    color: #d9b46d
+}
+
+.header nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    font-size: 14px
+}
+
+.header nav a:hover {
+    color: #d9b46d
+}
+
+.hero {
+    padding: 110px max(5vw, 20px);
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.153),
+            rgba(0, 0, 0, 0.25)
+        ),
+        url("IMG/portada.png") center / cover no-repeat;
+    min-height: 580px;
+}
+
+.eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px
+}
+
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(46px, 7vw, 66px);
+    font-weight: 400;
+    line-height: 1.06;
+    margin: 24px 0;
+    max-width: 650px;
+    overflow-wrap: break-word;
+}
+
+
+.hero em {
+    font-style: normal
+}
+
+.hero p:not(.eyebrow),
+.intro {
+    color: #c4bcac;
+    line-height: 1.7;
+    max-width: 610px
+}
+
+.btn,
+.toggle {
+    display: inline-block;
+    background: #d9b46d;
+    color: #18140d;
+    padding: 13px 20px;
+    border: 0;
+    border-radius: 3px;
+    font-weight: 700;
+    cursor: pointer
+}
+
+.btn:hover,
+.toggle:hover {
+    background: #f0ca83
+}
+
+.section {
+    padding: 76px max(5vw, 20px)
+}
+
+.section-alt {
+    background: #1a1915
+}
+
+h2 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(32px, 4vw, 48px);
+    margin: 12px 0 20px
+}
+
+.puppy-grid,
+.parent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 24px;
+    margin-top: 36px;
+    align-items: start;
+}
+
+.puppy,
+.parent {
+    background: #201e19;
+    border: 1px solid #51452f;
+    border-radius: 6px;
+    overflow: hidden
+}
+
+.photo {
+    height: 220px;
+    background: linear-gradient(135deg, #66533a, #28251f);
+    display: grid;
+    place-items: center;
+    color: #ead2a1;
+    text-align: center;
+    font-family: Georgia, serif;
+    font-size: 24px;
+    padding: 18px
+}
+
+.content {
+    padding: 22px
+}
+
+.topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px
+}
+
+.topline h3 {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    margin: 0
+}
+
+.status {
+    color: #9ed0a4;
+    font-size: 12px
+}
+
+.meta,
+.details p {
+    color: #c6bdaf;
+    font-size: 14px;
+    line-height: 1.6
+}
+
+.toggle {
+    margin-top: 12px;
+    width: 100%
+}
+
+
+.details {
+    overflow: hidden;
+    transition:
+        height 0.4s ease,
+        opacity 0.4s ease;
+}
+
+.details[hidden] {
+    display: none;
+}
+
+
+.thumbs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap
+}
+
+.thumb {
+    flex: 1;
+    min-width: 60px;
+    min-height: 65px;
+    background: #4b4030;
+    border: 1px solid #a98b53;
+    color: #e7d4b0;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    padding: 6px;
+    text-align: center
+}
+
+.notice {
+    border-left: 3px solid #d9b46d;
+    padding: 12px 16px;
+    background: #252117;
+    color: #e3d1ae
+}
+
+footer {
+    text-align: center;
+    padding: 28px;
+    color: #a59b88;
+    border-top: 1px solid #3c3425;
+    font-size: 13px
+}
+
+@media(max-width:600px) {
+    .header {
+        align-items: flex-start;
+        flex-direction: column
+    }
+
+
+    .section {
+        padding-top: 56px;
+        padding-bottom: 56px
+    }
+}
+
+.photo:has(img) {
+    padding: 0;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+.thumb-img {
+    width: 60%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 2px;
+}
+
+.thumbs {
+    display: flex;
+    flex-direction: flow;
+    gap: 12px;
+}
+
+
+.puppy {
+    background: rgba(151, 18, 18, 0.15);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(16px);
+     border: 2px solid rgba(78, 67, 21, 0.35);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+}
+
+
+.puppy .photo {
+    height: 400px;
+    overflow: hidden;
+}
+
+.puppy .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.puppy .content {
+    background: #201e19;
+    padding: 22px;
+}
+
+/* Fotografías de los padres */
+.parent .photo {
+    height: 440px;
+    padding: 10px;
+    overflow: hidden;
+    background: #201e19;
+}
+
+.parent .photo img {
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+}
+
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 45px 6%;
+  background: #171510;
+}
+
+.benefit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.benefit svg {
+  width: 38px;
+  height: 38px;
+  color: #d6ad63;
+  stroke-width: 1.5;
+}
+
+.benefit h3 {
+  color: #e9d1a0;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .benefits {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 16px;
+    padding: 35px 20px;
+  }
+
+  .benefit h3 {
+    font-size: 13px;
+  }
+}
+
+/* Fondo de cachorros y padres */
+.section,
+.section-alt {
+    background: #e1ddd6;
+}
+
+
+.akita-info {
+  background: #f8f7f4;
+  padding: 70px 6%;
+}
+
+.akita-info h2 {
+  text-align: center;
+  font-size: 32px;
+  color: #25211c;
+  margin-bottom: 10px;
+}
+
+.akita-subtitle {
+  text-align: center;
+  color: #a58246;
+  margin-bottom: 45px;
+}
+
+.akita-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.akita-image img {
+  display: block;
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.akita-description h3 {
+  font-size: 26px;
+  color: #25211c;
+  margin-bottom: 20px;
+}
+
+.akita-description p {
+  color: #514a40;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 600px) {
+  .akita-info {
+    padding: 45px 20px;
+  }
+
+  .akita-info h2 {
+    font-size: 26px;
+  }
+
+  .akita-content {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .akita-image img {
+    height: 260px;
+  }
+
+  .akita-description h3 {
+    font-size: 23px;
+  }
+}
+
+/* Título principal de la portada */
+.hero h1 {
+    color: #ffffff;
+}
+
+/* Títulos de cachorros y padres */
+.section h2,
+.section-alt h2 {
+    color: #24201a;
+}
+
+/* Textos introductorios de las secciones */
+.section > .intro,
+.section-alt > .intro {
+    color: #514a40;
+}
+
+
+/* BOTÓN WHATSAPP - DEMOSTRACIÓN */
+
+.whatsapp-demo {
+    width: 100%;
+    margin-top: 15px;
+    padding: 14px;
+    background: #16834a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.whatsapp-demo:hover {
+    background: #116c3c;
+}
+
+/* VENTANA EMERGENTE */
+
+.whatsapp-dialog {
+    width: min(90%, 450px);
+    padding: 25px;
+    border: 1px solid #a88b53;
+    border-radius: 12px;
+    background: #201e19;
+    color: white;
+}
+
+.whatsapp-dialog::backdrop {
+    background: rgba(51, 30, 30, 0.7);
+}
+
+.whatsapp-dialog h2 {
+    font-size: 26px;
+    color: #e9d1a0;
+}
+
+.whatsapp-message {
+    padding: 15px;
+    background: #173f2b;
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+#cerrar-whatsapp {
+    padding: 12px 20px;
+    background: #d9b46d;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+/* Botón de administrador */
+.admin-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 16px;
+    background: transparent;
+    color: #d9b46d;
+    border: 1px solid #d9b46d;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.admin-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.admin-btn:hover {
+    background: #d9b46d;
+    color: #18140d;
+}
+
+.admin-btn:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 600px) {
+    .admin-btn {
+        align-self: flex-end;
+    }
+}
+
+
+/* PANEL DE INICIO DE SESIÓN */
+
+.admin-dialog {
+    width: min(90%, 400px);
+    padding: 30px;
+    border: 1px solid #a88b53;
+    border-radius: 14px;
+    background: #201e19;
+    color: #ffffff;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Fondo oscuro detrás del panel */
+.admin-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+/* Título */
+.admin-dialog h2 {
+    color: #e9d1a0;
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+/* Descripción */
+.admin-dialog > p {
+    color: #c6bdaf;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Formulario */
+#admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Etiquetas */
+#admin-form label {
+    color: #e9d1a0;
+    font-size: 14px;
+}
+
+/* Correo y contraseña */
+#admin-form input {
+    width: 100%;
+    padding: 13px;
+    background: #12120f;
+    color: white;
+    border: 1px solid #51452f;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+/* Campo seleccionado */
+#admin-form input:focus {
+    outline: none;
+    border-color: #d9b46d;
+}
+
+/* Botones */
+#admin-form button {
+    padding: 13px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Iniciar sesión */
+#admin-form button[type="submit"] {
+    margin-top: 12px;
+    background: #d9b46d;
+    color: #18140d;
+    border: none;
+}
+
+/* Cancelar */
+#cerrar-admin {
+    background: transparent;
+    color: #e9d1a0;
+    border: 1px solid #51452f;
+}
+
+/* Efecto al pasar el cursor */
+#admin-form button[type="submit"]:hover {
+    background: #f0ca83;
+}
+
+#cerrar-admin:hover {
+    background: #302b23;
+}
+
+/* Mensajes de error */
+#admin-error {
+    color: #ff7777;
+    font-size: 13px;
+    margin: 0;
+}
+
+#admin-error:empty {
+    display: none;
+}
+
+/* PANEL DE ADMINISTRACIÓN */
+
+
+/* ------------PANEL DE ADMINISTRACIÓN-------------- */
+
+.admin-panel {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background: #11110f;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.admin-panel[hidden] {
+    display: none;
+}
+
+/* MENÚ LATERAL */
+
+.admin-sidebar {
+    width: 250px;
+    height: 100%;
+    flex-shrink: 0;
+    padding: 24px 16px;
+    background: #181714;
+    border-right: 1px solid #3c3425;
+
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* LOGOTIPO */
+
+.admin-logo {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 36px;
+}
+
+.admin-logo span {
+    color: #d9b46d;
+}
+
+/* OPCIONES DEL MENÚ */
+
+.admin-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 12px;
+
+    color: #e9d1a0;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 15px;
+}
+
+.admin-menu-item:hover {
+    background: #302b23;
+}
+
+.admin-menu-item .icono {
+    display: flex;
+    align-items: center;
+}
+
+.admin-menu-item .admin-plus {
+    margin-left: auto;
+    width: 17px;
+    height: 17px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.admin-menu-item:hover .admin-plus {
+    opacity: 1;
+}
+
+/* CERRAR SESIÓN */
+
+.admin-logout {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 12px;
+
+    background: transparent;
+    color: #e9d1a0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.admin-logout:hover {
+    background: #302b23;
+}
+
+/* CONTENIDO PRINCIPAL */
+
+.admin-content {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    overflow-y: auto;
+    background: #fffaf3;
+}
+
+
+.admin-preview {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+
+
+
+/* Contacto público por WhatsApp */
+.whatsapp-contacto:not([hidden]) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    background: #7fd96d;
+    color: #18140d;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.whatsapp-contacto:hover {
+    background: #95f083;
+    transform: translateY(-2px);
+}
+.whatsapp-contacto:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+.contacto-numero {
+    margin-top: 14px;
+    color: #6ae887;
+    font-size: 16px;
+}
+
+.telefono-ecuador {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.telefono-ecuador span {
+    padding: 12px;
+    background: #252117;
+    color: #d9b46d;
+    border: 1px solid #a88b53;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.telefono-ecuador input {
+    flex: 1;
+    min-width: 0;
+}

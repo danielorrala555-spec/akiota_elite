@@ -43,18 +43,12 @@ const cachorros = [
   }
 ];
 
-const padres = [
-  {
-    nombre: 'Koda',
-    rol: 'Padre',
-    foto: 'IMG/koda-1.jpg'
-  },
-  {
-    nombre: 'Nala',
-    rol: 'Madre',
-    foto: 'IMG/nala-1.png'
-  }
-];
+
+const fotosPadres = {
+    Padre: 'IMG/koda-1.jpg',
+    Madre: 'IMG/nala-1.png'
+};
+
 const grid = document.querySelector('#puppy-grid');
 const parentGrid = document.querySelector('#parent-grid');
 const escapar = valor => String(valor).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -107,42 +101,78 @@ ${c.disponible ? `
   </article>`).join('');
 
 
-parentGrid.innerHTML = padres.map((p, i) => `
-  <article class="parent">
-    <div class="photo">
-      <img
-        src="${escapar(p.foto)}"
-        alt="Fotografía de ${escapar(p.nombre)}"
-      >
-    </div>
 
-    <div class="content">
-      <div class="topline">
-        <h3>${escapar(p.nombre)}</h3>
-        <span class="meta">${escapar(p.rol)}</span>
-      </div>
+async function cargarPadres() {
+  const { data, error } = await supabaseClient
+    .from("padres")
+    .select("id, nombre, raza, rol, informacion_adicional, imagen_url")
+    .order("id", { ascending: true });
 
-      <button
-        class="toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="padre-detalles-${i}"
-      >
-        Ver información
-      </button>
+  if (error) {
+    console.error("Error al cargar los padres:", error);
+  }
 
-      <div class="details" id="padre-detalles-${i}" hidden>
-        <p><strong>Nombre:</strong> ${escapar(p.nombre)}</p>
-        <p><strong>Raza:</strong> Akita americano</p>
-        <p><strong>Rol:</strong> ${escapar(p.rol)}</p>
-        <p>Información adicional pendiente de confirmar.</p>
-      </div>
-    </div>
-  </article>
-`).join('');
+  // Conservamos los datos locales si falla la consulta.
+  const listaPadres = !error && data?.length
+    ? data
+    : padres.map((p, i) => ({
+        id: i + 1,
+        nombre: p.nombre,
+        raza: "Akita americano",
+        rol: p.rol,
+        informacion_adicional: null,
+        imagen_url: null
+      }));
+
+  parentGrid.innerHTML = listaPadres.map((p, i) => {
+    const fotoLocal = p.rol === "Madre"
+      ? "IMG/nala-1.png"
+      : "IMG/koda-1.jpg";
+
+    const foto = p.imagen_url || fotoLocal;
+
+    return `
+      <article class="parent">
+        <div class="photo">
+          <img
+            src="${escapar(foto)}"
+            alt="Fotografía de ${escapar(p.nombre)}"
+          >
+        </div>
+
+        <div class="content">
+          <div class="topline">
+            <h3>${escapar(p.nombre)}</h3>
+            <span class="meta">${escapar(p.rol)}</span>
+          </div>
+
+          <button
+            class="toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="padre-detalles-${i}"
+          >
+            Ver información
+          </button>
+
+          <div class="details" id="padre-detalles-${i}" hidden>
+            <p><strong>Nombre:</strong> ${escapar(p.nombre)}</p>
+            <p><strong>Raza:</strong> ${escapar(p.raza)}</p>
+            <p><strong>Rol:</strong> ${escapar(p.rol)}</p>
+            <!------------------ MOSTRAR INFORMACIÓN ADICIONAL SI EXISTE, O "..." SI NO ------------------>
+            <p>${escapar(p.informacion_adicional || "...")}</p>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+cargarPadres();
 
 
-const botones = document.querySelectorAll('.toggle');
+
+const botones = document;
 const duracion = 400;
 
 function animarDetalles(boton, abrir) {
@@ -196,30 +226,16 @@ function animarDetalles(boton, abrir) {
     };
 }
 
-botones.forEach(boton => {
-    boton.addEventListener('click', () => {
-        const detalles = boton.nextElementSibling;
-        const abrir = boton.getAttribute('aria-expanded') !== 'true';
+document.addEventListener("click", (evento) => {
+    const boton = evento.target.closest(".toggle");
+    if (!boton) return;
 
-        // Cerrar las otras tarjetas abiertas
-        botones.forEach(otroBoton => {
-            if (
-                otroBoton !== boton &&
-                otroBoton.getAttribute('aria-expanded') === 'true'
-            ) {
-                animarDetalles(otroBoton, false);
-            }
-        });
-
-        animarDetalles(boton, abrir);
-    });
+    const abrir = boton.getAttribute("aria-expanded") !== "true";
+    animarDetalles(boton, abrir);
 });
 
-const ventanaWhatsApp = document.querySelector('#whatsapp-preview');
-const mensajeWhatsApp = document.querySelector('#whatsapp-message');
-
-grid.addEventListener('click', (evento) => {
-    const boton = evento.target.closest('.whatsapp-demo');
+grid.addEventListener("click", async (evento) => {
+    const boton = evento.target.closest(".whatsapp-demo");
     if (!boton) return;
 
     const cachorro = cachorros.find(
@@ -228,18 +244,31 @@ grid.addEventListener('click', (evento) => {
 
     if (!cachorro || !cachorro.disponible) return;
 
-    const codigo = `AK-${String(cachorro.id).padStart(3, '0')}`;
+    const codigo = `AK-${String(cachorro.id).padStart(3, "0")}`;
 
-    mensajeWhatsApp.textContent =
+    const mensaje =
         `Hola, estoy interesado en el cachorro ${cachorro.nombre}, ` +
         `código ${codigo}, de raza Akita americano. ` +
         `Me gustaría conocer su precio y obtener más información.`;
 
-    ventanaWhatsApp.showModal();
-});
+    // Consultar el WhatsApp guardado en Supabase
+    const { data, error } = await supabaseClient
+        .from("contacto")
+        .select("whatsapp")
+        .eq("id", 1)
+        .single();
 
-document.querySelector('#cerrar-whatsapp').addEventListener('click', () => {
-    ventanaWhatsApp.close();
+    if (error || !data?.whatsapp) {
+        console.error("Error al consultar WhatsApp:", error);
+        alert("El número de WhatsApp no está disponible.");
+        return;
+    }
+
+    const numero = data.whatsapp.replace(/\D/g, "");
+
+    const enlace = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(enlace, "_blank", "noopener,noreferrer");
 });
 
 // -------------- Cargar la portada desde Supabase y actualizar el contenido de la página -------------//
@@ -281,3 +310,49 @@ async function cargarPortada() {
 }
 
 cargarPortada();
+
+// Cargar WhatsApp de la sección Contacto
+
+async function cargarWhatsAppPublico() {
+    const enlace = document.getElementById("contacto-whatsapp");
+    const aviso = document.getElementById("contacto-aviso");
+
+    if (!enlace || !aviso) return;
+
+    try {
+        const { data, error } = await supabaseClient
+            .from("contacto")
+            .select("whatsapp")
+            .eq("id", 1)
+            .single();
+
+        if (error) throw error;
+
+        const whatsapp = String(data?.whatsapp || "").trim();
+        const numero = whatsapp.replace(/\D/g, "");
+
+        if (!numero) {
+            enlace.hidden = true;
+            aviso.hidden = false;
+            aviso.textContent = "Contacto no disponible por el momento.";
+            return;
+        }
+
+        const mensaje = "Hola, me gustaría obtener información sobre los cachorros de Akita Elite.";
+
+        enlace.href = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+        enlace.hidden = false;
+
+        // Mostrar el número debajo del botón
+        aviso.textContent = `WhatsApp: ${whatsapp}`;
+        aviso.hidden = false;
+
+    } catch (error) {
+        console.error("Error al cargar contacto:", error);
+        enlace.hidden = true;
+        aviso.hidden = false;
+        aviso.textContent = "No se pudo cargar el contacto.";
+    }
+}
+
+cargarWhatsAppPublico();

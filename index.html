@@ -74,7 +74,22 @@
       <p class="eyebrow">CONTACTO</p>
       <h2>¿Te interesa un cachorro?</h2>
       <p class="intro">Consulta disponibilidad y detalles directamente con el criadero.</p>
-      <p class="notice">El número de WhatsApp se configurará cuando el cliente lo proporcione.</p>
+      
+<a
+    id="contacto-whatsapp"
+    class="whatsapp-contacto"
+    href="#"
+    target="_blank"
+    rel="noopener noreferrer"
+    hidden
+>
+    Contactar por WhatsApp
+</a>
+
+<p id="contacto-aviso" class="notice">
+    Cargando información de contacto...
+</p>
+
     </section>
     <section class="akita-info" id="raza">
   <h2>La raza Akita</h2>
@@ -197,11 +212,11 @@
             <i data-lucide="plus" class="admin-plus"></i>
         </button>
 
-        <button type="button" class="admin-menu-item" data-section="camadas">
+        <button type="button" class="admin-menu-item" data-section="contacto">
             <span class="icono">
-                <i data-lucide="layers"></i>
+                <i data-lucide="phone"></i>
             </span>
-            <span class="nombre">Camadas</span>
+            <span class="nombre">Contacto</span>
             <i data-lucide="plus" class="admin-plus"></i>
         </button>
 
@@ -218,46 +233,127 @@
  
 <main class="admin-content">
 
-    <div id="admin-hint"></div>
+<!-- FORMULARIO PARA EDITAR PORTADA -->
+<section id="portada-panel" hidden>
 
-    <!-- FORMULARIO PARA EDITAR PORTADA -->
-    <section id="portada-panel" hidden>
+    <h3>Editar portada</h3>
 
-        <h3>Editar portada</h3>
+    <div class="portada-editor-grid">
 
-        <label for="titulo-portada">Título</label>
-        <input
-            type="text"
-            id="titulo-portada"
-            placeholder="Título de la portada"
-        >
+        <!-- COLUMNA IZQUIERDA -->
+        <div class="portada-editor-texto">
 
-        <label for="subtitulo-portada">Subtítulo</label>
-        <textarea
-            id="subtitulo-portada"
-            placeholder="Descripción de la portada"
-        ></textarea>
+            <label for="titulo-portada">Título</label>
+            <input
+                type="text"
+                id="titulo-portada"
+                placeholder="Título de la portada"
+            >
 
-        <label for="imagen-portada">Imagen de portada</label>
-        <input
-            type="file"
-            id="imagen-portada"
-            accept="image/*"
-        >
+            <label for="subtitulo-portada">Subtítulo</label>
+            <textarea
+                id="subtitulo-portada"
+                rows="5"
+                placeholder="Descripción de la portada"
+            ></textarea>
 
-        <img
-            id="vista-imagen-portada"
-            alt="Vista previa de portada"
-            style="max-width: 300px; display: none;"
-        >
+            <button type="button" id="guardar-portada">
+                Guardar cambios
+            </button>
 
-        <button type="button" id="guardar-portada">
-            Guardar cambios
-        </button>
+            <p id="mensaje-portada" role="status"></p>
 
-        <p id="mensaje-portada"></p>
+        </div>
 
-    </section>
+        <!-- COLUMNA DERECHA -->
+        <div class="portada-editor-imagen">
+
+            <label for="imagen-portada">
+                Imagen de portada
+            </label>
+
+            <div class="portada-imagen-marco">
+                <img
+                    id="vista-imagen-portada"
+                    alt="Vista previa de portada"
+                    style="display: none;"
+                >
+            </div>
+
+            <input
+                type="file"
+                id="imagen-portada"
+                accept="image/*"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- FORMULARIO PARA EDITAR PADRES -->
+<section id="padres-panel" class="padres-editor" hidden>
+  </div>
+  <div class="padres-editor-grid">
+    <div class="padres-editor-photo">
+      <label for="imagen-padre">Fotografía del ejemplar</label>
+      <div class="padres-photo-frame">
+        <img id="vista-imagen-padre" alt="Vista previa del ejemplar" style="display:none;">
+        <div class="padres-photo-empty">Selecciona un ejemplar para ver su fotografía</div>
+      </div>
+      <input type="file" id="imagen-padre" accept="image/*">
+      <label for="informacion-padre">Información adicional</label>
+      <textarea id="informacion-padre" rows="5" placeholder="Premios, pedigrí, temperamento u otra información destacada"></textarea>
+    </div>
+    <div class="padres-editor-fields">
+      <label for="seleccionar-padre">Seleccionar ejemplar</label>
+      <select id="seleccionar-padre"><option value="">Selecciona un ejemplar</option></select>
+      <label for="nombre-padre">Nombre</label>
+      <input type="text" id="nombre-padre" placeholder="Nombre del ejemplar">
+      <label for="raza-padre">Raza</label>
+      <input type="text" id="raza-padre" placeholder="Raza del ejemplar">
+      <label for="rol-padre">Rol</label>
+      <select id="rol-padre"><option value="Padre">Padre</option><option value="Madre">Madre</option></select>
+    </div>
+  </div>
+  <div class="padres-editor-actions">
+    <p id="mensaje-padre" role="status"></p>
+    <button type="button" id="guardar-padre">Guardar cambios</button>
+  </div>
+</section>
+
+<!-- FORMULARIO PARA EDITAR CONTACTO -->
+<section id="contacto-panel" hidden>
+    <h3>Editar contacto</h3>
+
+    <label for="whatsapp-contacto">
+        Número de WhatsApp
+    </label>
+
+    
+<div class="telefono-ecuador">
+    <span>🇪🇨 +593</span>
+    <input
+        type="tel"
+        id="whatsapp-contacto"
+        placeholder="0987654321"
+        inputmode="numeric"
+        maxlength="10"
+    >
+</div>
+
+
+    <button type="button" id="guardar-contacto">
+        Guardar cambios
+    </button>
+
+    <p id="mensaje-contacto" role="status"></p>
+</section>
+
+
 
     <!-- VISTA PREVIA DE LA PÁGINA -->
     <iframe
